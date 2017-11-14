@@ -21,7 +21,7 @@ public class Welcome {
     }
 
     @RequestMapping("/picasso")
-    public String greet()
+    public String greetpicasso()
     {
         return "Welcome bharath"+notificationService.getMessage();
     }
