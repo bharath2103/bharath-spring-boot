@@ -2,10 +2,15 @@ package Model;
 
 import org.springframework.stereotype.Component;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+
 @Component
+@XmlRootElement
 public class LoginForm {
     private String username;
     private String password;
+    private String error;
 
     public String getUsername() {
         return username;
@@ -21,5 +26,13 @@ public class LoginForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

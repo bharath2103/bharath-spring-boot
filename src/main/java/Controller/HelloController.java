@@ -13,11 +13,10 @@ public class HelloController {
     private LoginForm loginForm;
 
 
-    @RequestMapping("/sample")
+    @RequestMapping(value = "/sample", produces = {"application/xml","application/json"})
     @ResponseBody
     public LoginForm greet(){
-        loginForm.setUsername("Bharath");
-        loginForm.setPassword("picasso");
+        loginForm.setError("Access Denied");
         return loginForm;
     }
 }
