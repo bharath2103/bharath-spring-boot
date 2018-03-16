@@ -1,9 +1,11 @@
 package Controller;
 
 import Model.LoginForm;
+import customException.UserNameNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,7 +17,6 @@ public class HelloController {
 
 
     @RequestMapping(value = "/sample", produces = {"application/xml","application/json"})
-    @ResponseBody
     public LoginForm greet(){
         loginForm.setUsername("Bharathkumar");
         loginForm.setPassword("Password");
@@ -24,9 +25,18 @@ public class HelloController {
     }
 
     @RequestMapping(value = "/fetch")
-    public String fetch(){
+    public String fetch() {
+        boolean check = false;
         RestTemplate restTemplate = new RestTemplate();
-        loginForm = restTemplate.getForObject("http://localhost:8080/sample",LoginForm.class);
-        return loginForm.getUsername();
+        ResponseEntity<String> entity = restTemplate.getForEntity("http://localhost:8080/sample"
+                , String.class);
+        MediaType contentType = entity.getHeaders().getContentType();
+        return contentType.toString();
     }
+
+    @RequestMapping(value = "/fetchusername")
+    public String fetchUserName() throws UserNameNotFound {
+        throw new UserNameNotFound();
+    }
+
 }

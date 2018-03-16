@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"Controller","Model"})
+@ComponentScan({"Controller","Model","customException"})
 public class BharathSpringBootApplication {
 
 	public static void main(String[] args) {
